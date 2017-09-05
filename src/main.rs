@@ -7,7 +7,13 @@ enum StatementType {
     Select,
 }
 
-fn prepare_statement(input: &str) -> Result<String, String> {
+fn prepare_statement(input: &str) -> Result<StatementType, String> {
+    if input.to_lowercase().starts_with("select") {
+        return Ok(StatementType::Select)
+    }
+    if input.to_lowercase().starts_with("insert") {
+        return Ok(StatementType::Insert)
+    }
     Err(format!("Unrecognized keyword at start of: {}", input))
 }
 

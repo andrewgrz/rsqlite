@@ -8,7 +8,7 @@ enum StatementType {
 }
 
 fn prepare_statement(input: &str) -> Result<String, String> {
-    Ok("Success!".to_string())
+    Err(format!("Unrecognized keyword at start of: {}", input))
 }
 
 fn main() {
@@ -31,6 +31,7 @@ fn main() {
                     _ => {
                         if cmd.starts_with('.') {
                             println!("Unrecognized meta command: {}", cmd);
+                            continue;
                         }
 
                         match prepare_statement(cmd) {

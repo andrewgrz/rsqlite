@@ -17,6 +17,13 @@ fn prepare_statement(input: &str) -> Result<StatementType, String> {
     Err(format!("Unrecognized keyword at start of: {}", input))
 }
 
+fn execute_statement(statement: StatementType) {
+    match statement {
+        StatementType::Insert => println!("Do an insert"),
+        StatementType::Select => println!("Do a select statement")
+    };
+}
+
 fn main() {
     loop {
         print!("db > ");
@@ -42,7 +49,7 @@ fn main() {
 
                         match prepare_statement(cmd) {
                             Ok(res) => {
-                                // execute_statement
+                                execute_statement(res)
                             },
                             Err(e) => println!("{}", e)
                         }

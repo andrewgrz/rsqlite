@@ -2,6 +2,11 @@
 use std::io;
 use std::io::Write;
 
+enum StatementType {
+    Insert,
+    Select,
+}
+
 fn prepare_statement(input: &str) -> Result<String, String> {
     Ok("Success!".to_string())
 }

@@ -2,6 +2,10 @@
 use std::io;
 use std::io::Write;
 
+fn prepare_statement(input: &str) -> Result<String, String> {
+    Ok("Success!".to_string())
+}
+
 fn main() {
     loop {
         print!("db > ");
@@ -14,10 +18,22 @@ fn main() {
                 let cmd = input.trim();
 
                 match cmd {
-                    ".exit" => break,
+                    ".exit" => {
+                        println!("Goodbye!");
+                        break
+                    },
                     ".hello" => println!("Hello!"),
                     _ => {
-                        println!("Unrecognized command: {}", cmd);
+                        if cmd.starts_with('.') {
+                            println!("Unrecognized meta command: {}", cmd);
+                        }
+
+                        match prepare_statement(cmd) {
+                            Ok(res) => {
+                                // execute_statement
+                            },
+                            Err(e) => println!("{}", e)
+                        }
                     }
                 }
             }
